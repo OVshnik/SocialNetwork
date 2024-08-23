@@ -1,0 +1,27 @@
+﻿﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetwork.Data.Models;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+@model SocialNetwork.ViewModels.Account.UserViewModel;
+@{
+    ViewData["Title"] = "User";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+    <h3>
+        @Model.User.LastName @Model.User.FirstName
+    </h3>
+    <form class="form-inline" asp-area="Identity" asp-controller="AccountManager" asp-action="MyPage">
+        <button type="submit">Редактировать</button>
+    </form>
+    <div>
+        Статус: @Model.User.Status
+        Дата рождения: @Model.User.BirthDate
+        О себе: @Model.User.About
+        Email: @Model.User.Email
+    </div>
+    <div>
+        Список друзей
+    </div>
+}

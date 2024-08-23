@@ -1,17 +1,31 @@
-﻿@{
-	ViewData["Title"] = "Главная";
+﻿﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetwork.Data.Models;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+@model SocialNetwork.ViewModels.Account.MainViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+} 
+@if (SignInManager.IsSignedIn(User))
+{
+    <div>Hello @User.Identity!</div>
 }
+else
+{
 
 <div class="row">
 	<div class="side">
 		Пользуйтесь нашей самой крутой соцсетью! Регистрируйтесь всего за 2 минуты, делитесь мыслями, находите новых друзей.
 	</div>
+		<img class="main-img" src="https://www.funnyart.club/uploads/posts/2023-01/1672932599_www-funnyart-club-p-prikolnie-emblemi-kartinki-21.png" />
 </div>
-<img class="main-img" src="https://www.funnyart.club/uploads/posts/2023-01/1672932599_www-funnyart-club-p-prikolnie-emblemi-kartinki-21.png" />
-</div>
+
+
 <div class="main">
-	блок регистрации
-	<partial name="Register" />
-	блок авторизации
+	<partial name="Login" model="Model.Login"/>
+	<partial name="Register" model="Model.Register"/>
 </div>
-</div>
+
+} 

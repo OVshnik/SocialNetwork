@@ -45,21 +45,5 @@ namespace SocialNetwork.ViewModels.Account
         [Required]
         [Display(Name = "Никнейм")]
         public string Login { get; set; }
-        public enum Months
-        {
-            [Display(Name = "Январь")]
-            Jan = 1,
-            Feb,
-            Mar,
-            Apr,
-            May,
-            Jun,
-            Jul,
-            Aug,
-            Sep,
-            Oct,
-            Nov,
-            Dec
-        }
     }
 }

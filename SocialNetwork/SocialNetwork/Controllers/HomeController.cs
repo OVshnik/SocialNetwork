@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using SocialNetwork.Models;
 using SocialNetwork.ViewModels;
 using SocialNetwork.ViewModels.Account;
 using System.Diagnostics;
@@ -13,13 +14,15 @@ namespace SocialNetwork.Controllers
         {
             _logger = logger;
         }
-
-        public IActionResult Index()
+		[Route("")]
+		[Route("[controller]/[action]")]
+		public IActionResult Index()
         {
-            return View();
+            return View(new MainViewModel());
         }
-
-        public IActionResult Privacy()
+        
+        [Route("[action]")]
+		public IActionResult Privacy()
         {
             return View();
         }

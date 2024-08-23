@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SocialNetwork.Data.Models;
+using SocialNetwork.Models;
 using SocialNetwork.ViewModels.Account;
+using System.Reflection.Metadata.Ecma335;
 
 namespace SocialNetwork.Controllers
 {
-	public class AccountManagerController : Controller
+    public class AccountManagerController : Controller
 	{
 		public IMapper _mapper;
 		private readonly UserManager<User> _userManager;
@@ -20,14 +24,19 @@ namespace SocialNetwork.Controllers
 		[HttpGet]
 		public IActionResult Login()
 		{
-			return View();
+			return View("Home/Login");
+		}
+		[HttpGet]
+		public IActionResult Login(string returnUrl=null)
+		{
+			return View(new LoginViewModel { ReturnUrl = returnUrl });
 		}
 		[Route("Login")]
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public async Task<IActionResult> Login(LoginViewModel model)
 		{
-			if (!ModelState.IsValid)
+			if (ModelState.IsValid)
 			{
 				var user = _mapper.Map<User>(model);
 
@@ -49,7 +58,7 @@ namespace SocialNetwork.Controllers
 					ModelState.AddModelError("", "Неправильный логин и (или) пароль");
 				}
 			}
-			return View("View/Home/Index.cshtml");
+			return View("Views/Home/Index.cshtml");
 		}
 
 		[Route("Logout")]
@@ -59,6 +68,17 @@ namespace SocialNetwork.Controllers
 		{
 			await _signInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
+		}
+		[Route("MyPage")]
+		[Authorize]
+		[HttpGet]
+		public IActionResult MyPage()
+		{
+			var user = User;
+
+			var result=_userManager.GetUserAsync(user);
+
+			return View("User", new UserViewModel(result.Result));
 		}
 	}
 }

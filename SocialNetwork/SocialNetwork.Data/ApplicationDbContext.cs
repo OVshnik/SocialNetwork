@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using SocialNetwork.Data.Models;
 
+
 namespace SocialNetwork.Data
 {
     public class ApplicationDbContext:IdentityDbContext<User>
