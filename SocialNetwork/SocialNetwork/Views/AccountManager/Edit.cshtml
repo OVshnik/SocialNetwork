@@ -1,0 +1,75 @@
+﻿﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetwork.Data.Models;
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager;
+
+@model SocialNetwork.ViewModels.Account.UserEditViewModel;
+@{
+	ViewData["Title"] = "Edit";
+}
+@if (SignInManager.IsSignedIn(User))
+{
+	<h3>
+		Редактирование пользователя
+	</h3>
+	<div class="block-reg background-white">
+		<form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
+			<div asp-validation-summary="ModelOnly"></div>
+@* 			<div>
+				<div class="mrgn">
+					<input asp-for="UserId" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Id" disabled="" />
+					<span asp-validation-for="FirstName" class="text-danger"></span>
+				</div>
+			</div> *@
+			<div>
+				<div class="mrgn">
+					<input asp-for="FirstName" class="form-control" placeholder=""/>
+					<span asp-validation-for="FirstName" class="text-danger"></span>
+				</div>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="LastName" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().LastName"/>
+					<span asp-validation-for="LastName" class="text-danger"></span>
+				</div>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="MiddleName" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().MiddleName"/>
+					<span asp-validation-for="MiddleName" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="mrgn">
+				<input asp-for="BirthDate" class="form-control date_control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().BirthDate"/>
+				<span asp-validation-for="BirthDate" class="text-danger"></span>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="Email" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Email"/>
+					<span asp-validation-for="Email" class="text-danger"></span>
+				</div>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="Image" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Image"/>
+					<span asp-validation-for="Image" class="text-danger"></span>
+				</div>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="Status" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Status"/>
+					<span asp-validation-for="Status" class="text-danger"></span>
+				</div>
+			</div>
+			<div>
+				<div class="mrgn">
+					<input asp-for="About" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().About"/>
+					<span asp-validation-for="About" class="text-danger"></span>
+				</div>
+			</div>
+			<div class="center">
+				<input class="btn_submit" type="submit" value="Сохранить" />
+			</div>
+		</form>
+	</div>
+}

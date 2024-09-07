@@ -14,7 +14,7 @@ namespace SocialNetwork.Data.Models
         public string About {  get; set; }
         public string GetFullName()
         {
-            return FirstName + " " + MiddleName +" " + LastName;
+            return FirstName + " " + MiddleName + " " + LastName;
         }
 
         public User()

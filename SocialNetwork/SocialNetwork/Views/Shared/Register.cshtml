@@ -6,6 +6,7 @@
 
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.17.0/jquery.validate.min.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/reg.js"></script>
 
 <div class="block-reg background-white">
     <h4 class="center">Впервые с нами?</h4>
@@ -20,27 +21,43 @@
         </div>
         <div>
             <div class="mrgn">
-                <input asp-for="LastName" class="form-control" />
+                <input asp-for="LastName" class="form-control"/>
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
         </div>
         <div class="text-color-gray text-size_12">Дата рождения</div>
         <div class="mrgn center">
             <select asp-for="Date" class="form-control date_control" ID="ddlDay">
-                <option value="">@Model.Date</option>
+                <option value="">
+                    @if (Model.Date != 0) 
+                    {
+                        @Model.Date
+                    } 
+                    День
+                </option>
             </select>
             <span asp-validation-for="Date" class="text-danger"></span>
 
             <select asp-for="Month" class="form-control date_control" asp-items="Html.GetEnumSelectList<SocialNetwork.ViewModels.Months>()" onchange="PopulateDays()" ID="ddlMonth">
-                <option value="">@Model.Month</option>
+                <option value="">
+                    @if (Model.Month != 0)
+                    {
+                        @Model.Month
+                    }
+                    Месяц
+                    </option>
             </select>
-
             <span asp-validation-for="Month" class="text-danger"></span>
-
             <select asp-for="Year" class="form-control date_control" ID="ddlYear"
                     asp-items="Enumerable.Range(DateTime.Now.AddYears(-100).Year, DateTime.Now.AddYears(-14).Year - DateTime.Now.AddYears(-100).Year).Reverse().Select(x=> new SelectListItem(x.ToString(), x.ToString()))"
                     onchange="PopulateDays()">
-                <option value="">@Model.Year</option>
+                <option value="">
+                    @if (Model.Year != 0)
+                    {
+                        @Model.Year
+                    }
+                    Год
+                    </option>
             </select>
             <span asp-validation-for="Year" class="text-danger"></span>
         </div>
@@ -49,8 +66,6 @@
             <input class="btn_submit" type="submit" value="Продолжить регистрацию" />
         </div>
     </form>
-
-    @Model.Month
 
     <script src="http://code.jquery.com/jquery-latest.js"></script>
 

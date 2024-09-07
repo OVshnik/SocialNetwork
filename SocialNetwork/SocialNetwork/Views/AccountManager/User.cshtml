@@ -5,23 +5,73 @@
 
 @model SocialNetwork.ViewModels.Account.UserViewModel;
 @{
-    ViewData["Title"] = "User";
+	ViewData["Title"] = "User";
 }
 @if (SignInManager.IsSignedIn(User))
 {
-    <h3>
-        @Model.User.LastName @Model.User.FirstName
-    </h3>
-    <form class="form-inline" asp-area="Identity" asp-controller="AccountManager" asp-action="MyPage">
-        <button type="submit">Редактировать</button>
-    </form>
-    <div>
-        Статус: @Model.User.Status
-        Дата рождения: @Model.User.BirthDate
-        О себе: @Model.User.About
-        Email: @Model.User.Email
-    </div>
-    <div>
-        Список друзей
-    </div>
+	<partial name="_SearchLayoutPartial" />
+	<form asp-controller="AccountManager" asp-action="Logout" method="post">
+		<button type="submit" class="btn btn-sm btn-primary">
+			Выход
+		</button>
+	</form>
+	<h3>
+		@Model.User.LastName @Model.User.FirstName
+	</h3>
+	<button type="button"><a href="/Edit">Редактировать</a></button>
+	<div>
+		<img class="main-img" src="@Model.User.Image" />
+		<div>
+			Статус: @Model.User.Status
+		</div>
+		<div>
+			Дата рождения: @Model.User.BirthDate
+		</div>
+		<div>
+			О себе: @Model.User.About
+		</div>
+		<div>
+			Email: @Model.User.Email
+		</div>
+	</div>
+	<div class="lined-block">
+		<label class="gray-text">Список друзей</label>
+
+		@if (Model.Friends.Count != 0)
+		{
+
+			@foreach (var user in @Model.Friends)
+			{
+				<div>
+					<div class="mrgn center-align">
+						<img src="@user.Image" class="ava" />
+					</div>
+					<div class="mrgn center-align">
+						@user.GetFullName()
+					</div>
+					<div class="mrgn center-align">
+						<form asp-controller="AccountManager" asp-action="Chat" asp-route-id="@user.Id" method="post">
+							<button type="submit" class="btn btn-sm btn-primary min-width-but">
+								Чат
+							</button>
+						</form>
+					</div>
+					<div class="mrgn center-align">
+						<form asp-controller="AccountManager" asp-action="DeleteFriend" asp-route-id="@user.Id" method="post">
+							<button type="submit" class="btn btn-sm btn-primary">
+								Удалить из друзей
+							</button>
+						</form>
+					</div>
+				</div>
+			}
+		}
+		else
+		{
+			<div>
+				<label> У вас пока нет друзей.</label>
+			</div>
+		}
+	</div>
 }
+
