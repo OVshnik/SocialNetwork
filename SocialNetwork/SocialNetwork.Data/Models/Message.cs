@@ -9,7 +9,7 @@ namespace SocialNetwork.Data.Models
     public class Message
     {
         public int Id { get; set; }
-        public string Text { get; set; }
+        public string ?Text { get; set; }
 
         public string SenderId { get; set; }
         public User Sender { get; set; }

@@ -15,6 +15,7 @@
 	<div class="block-reg background-white">
 		<form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
 			<div asp-validation-summary="ModelOnly"></div>
+			<input class="form-control" asp-for="UserId" hidden/>
 @* 			<div>
 				<div class="mrgn">
 					<input asp-for="UserId" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Id" disabled="" />

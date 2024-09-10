@@ -9,6 +9,7 @@ namespace SocialNetwork.ViewModels.Account
 {
     public class UserEditViewModel
     {
+        [Required]
 		[Display(Name = "Идентификатор пользователя")]
         public string UserId { get; set; }
 

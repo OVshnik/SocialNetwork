@@ -100,6 +100,13 @@ namespace SocialNetwork.Controllers
 		[Route("Edit")]
 		[Authorize]
 		[HttpGet]
+		public IActionResult RedirectToEdit()
+		{
+			return RedirectToAction("Edit", "AccountManager");
+		}
+		[Route("Edit")]
+		[Authorize]
+		[HttpGet]
 		public IActionResult Edit()
 		{
 			var user = User;
