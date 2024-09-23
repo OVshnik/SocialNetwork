@@ -3,34 +3,43 @@
 }
 @model SocialNetwork.ViewModels.Account.ChatViewModel;
 <meta http-equiv="refresh" content="10">
-<div>
-	<button type="button"><a href="/MyPage">Назад</a></button>
-</div>
-<div>
-	Чат @Model.You.FirstName и @Model.ToWhom.FirstName
-</div>
-<h5>сообщение</h5>
-	@foreach(var item in Model.History)
-	{
-		if(item.SenderId!=null)
-		{
-		<div>
-			@item.Sender: @item.Text
-		</div>
-		}
-		else
-		{
-		<div>
-			@item.Recipient: @item.Text
-		</div>
-		}
-	}
-<form asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id" method="post">
-	<div class="mrgn">
-		
-		<input asp-for="NewMessage.Text" class="form-control" />
+<div class="chat_wrap background-white">
+	<div>
+		<button type="button" class="btn btn-sm btn-primary"><a href="/MyPage">Назад</a></button>
 	</div>
-    <button type="submit" class="btn btn-sm btn-primary">
-		Новое сообщение
-    </button>
-</form>
+	<div class="name">
+		Чат @Model.You.FirstName и @Model.ToWhom.FirstName
+	</div>
+	<div class="text_pad">
+		<p class="gray_text text-size_12">Сообщение</p>
+	</div>
+	<div class="form-control background-white">
+
+		@foreach (var item in Model.History)
+		{
+			if (item.SenderId != null)
+			{
+				<div>
+					@item.Sender: @item.Text
+				</div>
+			}
+			else
+			{
+				<div>
+					@item.Recipient: @item.Text
+				</div>
+			}
+		}
+	</div>
+	<div class="text_pad">
+	<p class="gray_text text-size_12 text_pad">Новое сообщение</p>
+	</div>
+	<form asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id" method="post">
+		<div class="mrgn">
+			<input asp-for="NewMessage.Text" class="form-control" />
+		</div>
+		<button type="submit" class="btn btn-sm btn-primary">
+			Отправить
+		</button>
+	</form>
+</div>

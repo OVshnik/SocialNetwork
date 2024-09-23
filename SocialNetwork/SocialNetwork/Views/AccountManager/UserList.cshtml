@@ -1,7 +1,7 @@
 ﻿@model SocialNetwork.ViewModels.Account.SearchViewModel;
 
 
-<div class="block-reg background-white">
+<div class="form-control background-white">
 
     @if (Model.UserList.Count != 0)
     {
@@ -9,7 +9,7 @@
         @foreach (var user in @Model.UserList)
         {
             <div>
-                <label>@user.GetFullName()</label>
+                <label class="text_pad">@user.GetFullName()</label>
                 @if (!@user.IsFriendWithCurrent)
                 {
                     <form asp-controller="AccountManager" asp-action="AddFriend" asp-route-id="@user.Id" method="post">
@@ -17,6 +17,10 @@
                             Добавить в друзья
                         </button>
                     </form>
+                }
+                else
+                {
+                    <p class="gray_text">Пользователь ваш друг</p>
                 }
             </div>
         }

@@ -9,7 +9,6 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-
 	<form asp-controller="AccountManager" asp-action="Logout" method="post">
 		<div class="exbutton">
 			<button type="submit" class="btn btn-sm btn-primary">
@@ -17,39 +16,45 @@
 			</button>
 		</div>
 	</form>
-	<h3>
+	<h3 class="name">
 		@Model.User.LastName @Model.User.FirstName
 	</h3>
-	<div class="user_page">
+	<div class="user_page background-white">
+		<div class="user_win">
+			<div>
 		<img class="main-img" src="@Model.User.Image" />
+			</div>
+			<div>
+			<form method="get" asp-controller="AccountManager" asp-action="Edit">
+				<input class="enter_submit" type="submit" value="Редактировать" />
+			</form>
+			</div>
+		</div>
+		<div class="info_wind">
 		<div class="user_info">
-			<p class="user_page_text">
+			<p class="gray_text">
 				Статус:
 			</p> @Model.User.Status
 		</div>
 		<div class="user_info">
-			<p class="user_page_text">
+			<p class="gray_text">
 				Дата рождения:
 			</p> @Model.User.BirthDate
 		</div>
 		<div class="user_info">
-			<p class="user_page_text">
+			<p class="gray_text">
 				О себе:
 			</p> @Model.User.About
 		</div>
 		<div class="user_info">
-			<p class="user_page_text">
+			<p class="gray_text">
 				Email:
 			</p> @Model.User.Email
 		</div>
+		</div>
 	</div>
-	<div style="display:block">
-		<form method="get" asp-controller="AccountManager" asp-action="Edit">
-			<input class="enter_submit" type="submit" value="Редактировать" />
-		</form>
-	</div>
-	<div>
-		<label class="gray-text">Список друзей</label>
+	<div class="fr_block">
+		<label class="fr_list_text">Список друзей</label>
 		@if (Model.Friends.Count != 0)
 		{
 			<div>

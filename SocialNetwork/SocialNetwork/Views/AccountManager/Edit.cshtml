@@ -9,19 +9,20 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-	<h3>
+	<form asp-controller="AccountManager" asp-action="Logout" method="post">
+		<div class="exbutton">
+			<button type="submit" class="btn btn-sm btn-primary">
+				Выход
+			</button>
+		</div>
+	</form>
+	<h3 class="name">
 		Редактирование пользователя
 	</h3>
-	<div class="block-reg background-white">
+	<div class="block-edit background-white">
 		<form class="frm" method="post" asp-controller="AccountManager" asp-action="Update">
 			<div asp-validation-summary="ModelOnly"></div>
 			<input class="form-control" asp-for="UserId" hidden/>
-@* 			<div>
-				<div class="mrgn">
-					<input asp-for="UserId" class="form-control" placeholder="@UserManager.Users.Where(x=>x.UserName==User.Identity.Name).FirstOrDefault().Id" disabled="" />
-					<span asp-validation-for="FirstName" class="text-danger"></span>
-				</div>
-			</div> *@
 			<div>
 				<div class="mrgn">
 					<input asp-for="FirstName" class="form-control" placeholder=""/>
