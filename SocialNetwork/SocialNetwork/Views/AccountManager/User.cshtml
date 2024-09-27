@@ -9,17 +9,11 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-	<form asp-controller="AccountManager" asp-action="Logout" method="post">
-		<div class="exbutton">
-			<button type="submit" class="btn btn-sm btn-primary">
-				Выход
-			</button>
-		</div>
-	</form>
-	<h3 class="name">
-		@Model.User.LastName @Model.User.FirstName
-	</h3>
+
 	<div class="user_page background-white">
+		<h3 class="name">
+			@Model.User.LastName @Model.User.FirstName
+		</h3>
 		<div class="user_win">
 			<div>
 		<img class="main-img" src="@Model.User.Image" />
@@ -39,7 +33,7 @@
 		<div class="user_info">
 			<p class="gray_text">
 				Дата рождения:
-			</p> @Model.User.BirthDate
+			</p> @Model.User.BirthDate.ToShortDateString();
 		</div>
 		<div class="user_info">
 			<p class="gray_text">
@@ -53,7 +47,7 @@
 		</div>
 		</div>
 	</div>
-	<div class="fr_block">
+	<div class="fr_block background-white">
 		<label class="fr_list_text">Список друзей</label>
 		@if (Model.Friends.Count != 0)
 		{

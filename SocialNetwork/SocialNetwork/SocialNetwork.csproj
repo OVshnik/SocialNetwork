@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\AccountManager\Chat.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="EntityFrameworkCore.GenericUnitOfWork" Version="1.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
@@ -35,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Shared\Chat.cshtml" />
+    <None Include="Views\AccountManager\Chat.cshtml" />
   </ItemGroup>
 
 </Project>

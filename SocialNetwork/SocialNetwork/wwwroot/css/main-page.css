@@ -7,7 +7,10 @@
     font-family: 'Brush Script MT', Brush Script Std, cursiv;
     font-size: 35px;
 }
-
+.container topnav{
+    display:flex;
+    flex-direction:row;
+}
 .btn a {
     color:white;
     text-decoration: none;
@@ -39,9 +42,8 @@
 
 .topnav {
     padding: 20px;
-    text-align: center;
+    margin-left: 35%;
     width: fit-content;
-    margin-left: 45%;
     background-color: #edeef0;
     display: inline-block;
 }
@@ -74,7 +76,10 @@
     color:#cbc6c6;
 }
 .fr_block{
-    margin:10px 0px 10px 0px;
+    margin-bottom:40px;
+    max-width:600px;
+    float:right;
+    margin-bottom:30px;
 }
 .block-reg {
     margin: 20px;
@@ -82,10 +87,17 @@
     padding: 30px;
     align-content: center;
     border-radius: 4px;
-    width: fit-content;
+    width: 300px;
     box-shadow: 0 1px 0 0 0, 0 0 0 1px #edeef0;
 }
-
+.block-reg-2 {
+    margin: 20px;
+    padding: 30px;
+    align-content: center;
+    border-radius: 4px;
+    width:auto;
+    box-shadow: 0 1px 0 0 0, 0 0 0 1px #edeef0;
+}
 .background-main {
     background-color: #edeef0;
 }
@@ -114,6 +126,10 @@
     margin: 0px 20px 0px 20px;
 }
 
+
+.logo_img{
+    max-width:300px;
+}
 .main-img {
     width: 100%;
     max-width: max-content;
@@ -170,15 +186,12 @@ input[type="checkbox"].input-validation-error {
 }
 
 .exbutton {
-    position: relative;
+    display:inline-block;
     color: white;
     padding: 14px 20px;
-    margin-left: 90%;
-    margin-top: -72px;
     border: none;
     cursor: pointer;
     width: fit-content;
-    z-index: 20;
 }
 .info_wind {
     display:flex;
@@ -193,8 +206,11 @@ input[type="checkbox"].input-validation-error {
     width: fit-content;
 }
 .user_page {
+    margin-top:30px;
     width: auto;
-    height: 55%;
+    min-height: 700px;
+    border-radius:5px;
+    margin-bottom:30px;
 }
 .user_info {
     padding: 5px 0px 5px 0px;
@@ -229,6 +245,9 @@ input[type="checkbox"].input-validation-error {
 }
 .chat_wrap{
     padding:30px 30px 30px 30px;
+    margin-top:20px;
+    margin-bottom:50px;
+    border-radius:5px;
 }
 .text_pad{
     padding:10px 0px 10px 0px;

@@ -9,13 +9,6 @@
 }
 @if (SignInManager.IsSignedIn(User))
 {
-	<form asp-controller="AccountManager" asp-action="Logout" method="post">
-		<div class="exbutton">
-			<button type="submit" class="btn btn-sm btn-primary">
-				Выход
-			</button>
-		</div>
-	</form>
 	<h3 class="name">
 		Редактирование пользователя
 	</h3>

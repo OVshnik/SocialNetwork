@@ -14,25 +14,26 @@
 		<p class="gray_text text-size_12">Сообщение</p>
 	</div>
 	<div class="form-control background-white">
-
-		@foreach (var item in Model.History)
+		@if (Model.History.Count != 0)
 		{
-			if (item.SenderId != null)
+			@foreach (var message in @Model.History)
 			{
 				<div>
-					@item.Sender: @item.Text
-				</div>
-			}
-			else
-			{
-				<div>
-					@item.Recipient: @item.Text
+					<label> @message.Sender.FirstName:</label>
+					@message.Text
 				</div>
 			}
 		}
+		else
+		{
+			<div>
+				<label> У вас пока нет сообщений с  @Model.ToWhom.GetFullName().</label>
+			</div>
+		}
+
 	</div>
 	<div class="text_pad">
-	<p class="gray_text text-size_12 text_pad">Новое сообщение</p>
+		<p class="gray_text text-size_12 text_pad">Новое сообщение</p>
 	</div>
 	<form asp-controller="AccountManager" asp-action="NewMessage" asp-route-id="@Model.ToWhom.Id" method="post">
 		<div class="mrgn">

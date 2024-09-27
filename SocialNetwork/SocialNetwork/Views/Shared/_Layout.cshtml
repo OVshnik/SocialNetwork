@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿@using Microsoft.AspNetCore.Identity;
+@using SocialNetwork.Data.Models;
+@inject SignInManager<User> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -14,11 +17,21 @@
 
 <body class="background-main">
 	<header>
-		<div class="container">
-			<div class="topnav">
-				<a href="/Home/Index">SocialNetwork</a>
+		<div class="container background-white">
+			<div class="topnav background-white">
+				<a href="/Home/Index"><img class="logo_img" src="Logo.JPG" /></a>
 			</div>
 			<partial name="_SearchLayoutPartial" />
+			@if (SignInManager.IsSignedIn(User))
+			{
+				<form asp-controller="AccountManager" asp-action="Logout" method="post" class="exbutton">
+					<div class="exbutton">
+						<button type="submit" class="btn btn-sm btn-primary">
+							Выход
+						</button>
+					</div>
+				</form>
+			}
 		</div>
 	</header>
 	<div class="container background-main">
