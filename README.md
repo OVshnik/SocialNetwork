@@ -1,2 +1,2 @@
 # SocialNetwork
-develop branch
+main branch
